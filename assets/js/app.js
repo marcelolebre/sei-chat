@@ -1,7 +1,5 @@
 'use strict';
 
-var myFirebaseRef = new Firebase("https://sei-chat.firebaseio.com/messages");
-
 angular.module('sails-chat-example', [])
   
   .controller('MainCtrl', ['$scope', function ($scope) {
@@ -13,7 +11,6 @@ angular.module('sails-chat-example', [])
     };
 
     $scope.send = function(){
-      myFirebaseRef.push($scope.data);
       io.socket.post('/message/chat', $scope.data, function(res){});
     };
 

@@ -5,7 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 var Firebase = require('firebase');
-var thisRef = new Firebase("https://sei-chat.firebaseio.com/messages");
+var firebase = new Firebase("https://sei-chat.firebaseio.com/messages");
 
 module.exports = {
   chat: function(req, res){
@@ -13,8 +13,10 @@ module.exports = {
       name: req.param('name'),
       message: req.param('message')
     };
+
     Message.create(data).exec(function created(err, message){
-      Message.publishCreate({id:message.id, name:message.name, message:message.message});
+      firebase.push(data);
+      Message.publishCreate({id: message.id, name: message.name, message: message.message});
     });
   },
 
@@ -23,8 +25,7 @@ module.exports = {
   },
 
   all: function(req, res){
-    
-    thisRef.limitToLast(20).once('value', function(messages) {
+    firebase.limitToLast(20).once('value', function(messages) {
       messageArray = []
       messages.forEach(function(message) {
         messageArray.push(message.val());
