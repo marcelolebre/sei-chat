@@ -23,7 +23,6 @@ angular.module('sails-chat-example', [])
 
     io.socket.on('message', function onServerSentEvent (msg) {
       switch(msg.verb) {
-
         case 'created':
           $scope.messages.push(msg.data);
           $scope.$apply();

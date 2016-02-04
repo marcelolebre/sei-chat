@@ -10,8 +10,12 @@
  */
 
 module.exports.bootstrap = function(cb) {
-
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   cb();
+
+  sails.config.firebase.on('child_added', function(message) {
+    var newMessage = message.val();
+    Message.findOrCreate(newMessage).exec(function created(err, createdMessage){
+      Message.publishCreate({id: createdMessage.id, name: createdMessage.name, message: createdMessage.message});
+    });
+  });
 };
