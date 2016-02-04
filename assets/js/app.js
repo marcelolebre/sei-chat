@@ -45,7 +45,6 @@ angular.module('sails-chat-example', ['luegg.directives'])
 
     io.socket.on('message', function onServerSentEvent (msg) {
       switch(msg.verb) {
-
         case 'created':
           $scope.messages.push(msg.data);
           $scope.updateNames(msg.data);

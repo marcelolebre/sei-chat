@@ -4,8 +4,6 @@
  * @description :: Server-side logic for managing messages
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-var Firebase = require('firebase');
-var firebase = new Firebase("https://sei-chat.firebaseio.com/messages");
 
 module.exports = {
   chat: function(req, res){
@@ -14,10 +12,7 @@ module.exports = {
       message: req.param('message')
     };
 
-    Message.create(data).exec(function created(err, message){
-      firebase.push(data);
-      Message.publishCreate({id: message.id, name: message.name, message: message.message});
-    });
+    sails.config.firebase.push(data);
   },
 
   subscribe: function(req, res){
@@ -25,11 +20,12 @@ module.exports = {
   },
 
   all: function(req, res){
-    firebase.limitToLast(20).once('value', function(messages) {
+    Message.find({sort: 'createdAt DESC'}).exec(function findCB(err, found){
       messageArray = []
-      messages.forEach(function(message) {
-        messageArray.push(message.val());
-      });
+      while (found.length){
+        message = found.pop();
+        messageArray.push(message);
+      }
       return res.send(messageArray);
     });
   }
