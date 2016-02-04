@@ -36,20 +36,23 @@ angular.module('sails-chat-example', ['luegg.directives'])
     };
 
     io.socket.get('/message/all', function(messages){
-      $scope.messages = messages;
-      $scope.updateNames();
-      $scope.$apply();
+      $scope.$apply(function(){
+        $scope.messages = messages;
+        $scope.updateNames();
+      }); 
     });
 
     io.socket.get('/message/subscribe', function(res){});
 
     io.socket.on('message', function onServerSentEvent (msg) {
       switch(msg.verb) {
+
         case 'created':
-          $scope.messages.push(msg.data);
-          $scope.updateNames(msg.data);
-          $scope.data.message = ''
-          $scope.$apply();
+          $scope.$apply(function(){
+            $scope.messages.push(msg.data);
+            $scope.updateNames(msg.data);
+            $scope.data.message = ''
+          });
           break;
 
         default: return;
