@@ -20,7 +20,7 @@ module.exports = {
   },
 
   all: function(req, res){
-    Message.find({}).exec(function findCB(err, found){
+    Message.find({sort: 'createdAt DESC'}).exec(function findCB(err, found){
       messageArray = []
       while (found.length){
         message = found.pop();
