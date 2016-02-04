@@ -1,39 +1,19 @@
 <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
 
-<div class="default-page" ng-app="sails-chat-example">
-    <div class="main container clearfix">
-        <ul class="getting-started">
-          <div class="container" ng-controller="MainCtrl">
-
-            <div class="panel panel-default" ng-repeat="n in messages">
-              <div class="panel-heading">
-                <h3 class="panel-title">Author: {{n.name}}</h3>
-              </div>
-              <div class="panel-body">
-                Message: {{n.message}}
-              </div>
-            </div>
-
-            <form class="form-horizontal" ng-submit="send()">
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Username</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" placeholder="Username" ng-model="data.name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Message</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" placeholder="Message" ng-model="data.message">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                  <button type="submit" class="btn btn-default">Submit</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </ul>
+<div class="message-board-container" ng-controller="MainCtrl">
+  <div class="message-container" scroll-glue>
+    <div class="message" ng-repeat="message in messages">
+      <p class="username text-color-{{message.colorNumber}}" >{{message.name}}</p>
+      <div class="message-content">
+        <p>{{message.message}}</p>
+      </div>
     </div>
+  </div>
+  <div class="input-container">
+    <form ng-submit="send()">
+      <input type="text" placeholder="Username" ng-model="data.name">
+      <input type="text" placeholder="write your message here" ng-model="data.message">
+      <button type="submit" class="success button">Send</button>
+    </form>
+  </div>
 </div>
