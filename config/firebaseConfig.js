@@ -1,6 +1,8 @@
 var Firebase = require('firebase');
-var firebase = new Firebase("https://sei-chat.firebaseio.com/messages");
+var firebaseMessages = new Firebase("https://sei-chat.firebaseio.com/messages");
+var firebaseUsers = new Firebase("https://sei-chat.firebaseio.com/users");
 
-module.exports.firebase = function() {
-  return firebase;
-}();
+module.exports.firebase = {
+  messages: firebaseMessages,
+  users: firebaseUsers
+}

@@ -7,12 +7,14 @@
 
 module.exports = {
   chat: function(req, res){
+    var userHandle = req.session.user.handle;
+    
     var data = {
-      name: req.param('name'),
+      name: userHandle,
       message: req.param('message')
     };
 
-    sails.config.firebase.push(data);
+    sails.config.firebase.messages.push(data);
   },
 
   subscribe: function(req, res){
@@ -20,13 +22,18 @@ module.exports = {
   },
 
   all: function(req, res){
-    Message.find({sort: 'createdAt DESC'}).exec(function findCB(err, found){
+    sails.config.firebase.messages.once('value', function(dataSnapshot) {
       messageArray = []
-      while (found.length){
-        message = found.pop();
-        messageArray.push(message);
-      }
-      return res.send(messageArray);
+
+      dataSnapshot.forEach(function(message){
+        var newMessage = message.val();
+
+        Message.findOrCreate(newMessage).exec(function created(err, createdMessage){
+          messageArray.push(createdMessage);
+        });
+      });
+    
+      return res.send({userHandle: req.session.user.handle, messages: messageArray}); 
     });
   }
 };

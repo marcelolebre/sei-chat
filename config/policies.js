@@ -48,4 +48,18 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+
+  MessageController: {
+    chat: 'isLoggedIn',
+    all: 'isLoggedIn',
+    subscribe: 'isLoggedIn'
+  },
+
+  AuthController: {
+    processLogout: 'isLoggedIn'
+  },
+
+  HomepageController:{
+    homepage: 'isLoggedIn'
+  }
 };
