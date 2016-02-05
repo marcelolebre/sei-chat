@@ -40,13 +40,16 @@
     <section class="top-bar">
       <p class="title top-bar-left">
         <span class="title-text">Anarcho Chat</span>
-        <form action="/logout" method="post">
-          <% if(req.session.user && req.session.user.handle){ %>
-          <button type="submit" value="Logout">Logout</button>
-          <% } %>
-        </form>
         <i class="title-icon fi-comment"></i>
       </p>
+
+      <% if(req.session.user && req.session.user.handle) { %>
+        <div class="top-bar-right">
+          <form action="/logout" method="post">
+            <button type="submit" value="Logout">Logout</button>
+          </form>
+        </div>
+      <% } %>
     </section>
 
     <section class="content-container">
