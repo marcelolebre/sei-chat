@@ -12,10 +12,10 @@
 module.exports.bootstrap = function(cb) {
   cb();
 
-  sails.config.firebase.on('child_added', function(message) {
+  sails.config.firebase.messages.on('child_added', function(message) {
     var newMessage = message.val();
     Message.findOrCreate(newMessage).exec(function created(err, createdMessage){
-      Message.publishCreate({id: createdMessage.id, name: createdMessage.name, message: createdMessage.message});
+      Message.publishCreate({id: message.key(), name: createdMessage.name, message: createdMessage.message});
     });
   });
 };

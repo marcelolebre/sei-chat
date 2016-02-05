@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('sails-chat-example', ['luegg.directives'])
+var seiChatApp = angular.module('sails-chat-example', ['luegg.directives']);
   
-  .controller('MainCtrl', ['$scope', function ($scope) {
+seiChatApp.controller('MainCtrl', ['$scope', function ($scope) {
     
     $scope.messages = [];
     $scope.data = {
@@ -26,18 +26,21 @@ angular.module('sails-chat-example', ['luegg.directives'])
     };
 
     $scope.assignNumberToName = function(message) {
-      var name = message.name.toLowerCase();
+      if(message.name !== undefined) {
+        var name = message.name.toLowerCase();
 
-      if($scope.names[name] === undefined) {
-        $scope.names[name] = Object.keys($scope.names).length;
+        if($scope.names[name] === undefined) {
+          $scope.names[name] = Object.keys($scope.names).length;
+        }
+
+        message.colorNumber = $scope.names[name];
       }
-
-      message.colorNumber = $scope.names[name];
     };
 
-    io.socket.get('/message/all', function(messages){
+    io.socket.get('/message/all', function(all){
       $scope.$apply(function(){
-        $scope.messages = messages;
+        $scope.userHandle = all.userHandle;
+        $scope.messages = all.messages;
         $scope.updateNames();
       }); 
     });

@@ -31,11 +31,11 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-  '/': {
-    view: 'homepage'
-  }
-
+  '/': {view: 'login'},
+  'get /login': {view: 'login'},
+  '/sei-chat': 'HomepageController.homepage',
+  'post /signin': 'AuthController.processSignin',
+  'post /logout': 'AuthController.processLogout'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
