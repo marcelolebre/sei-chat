@@ -7,12 +7,12 @@ html, html a {
 }
 
 body#demo-app {
-	background-color: #E2DED4;
+  background-color: #E2DED4;
 }
 
 #demo-app .top-bar {
-	background-color: #B52319;
-	padding: 12px 24px;
+  background-color: #B52319;
+  padding: 12px 24px;
 }
 
 .top-bar .title {
@@ -29,76 +29,112 @@ body#demo-app {
   top: 2px;
 }
 
+#demo-app .top-bar .top-bar-right button {
+  line-height: 24px;
+  color: #FDFDFD;
+  font-weight: 600;
+}
+
+#demo-app .top-bar .top-bar-right button:hover {
+  color: #DEDBDC;
+}
+
 #demo-app .content-container {
-	max-width: 720px;
-	height: calc(100% - 48px);
-	margin: 0 auto;
-	background-color: #fff;
+  max-width: 720px;
+  height: calc(100% - 48px);
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.content-container .login-container {
+  padding: 72px 24px;
+}
+
+.content-container .login-container .username-field {
+  width: 288px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.content-container .login-container .action-container {
+  text-align: center;
+}
+
+.content-container .login-container .action-container .login-button {
+  width: 288px;
+  margin-bottom: 0;
 }
 
 .content-container .message-board-container {
-	height: calc(100% - 200px);
+  height: calc(100% - 163px);
 }
 
 .content-container .message-container {
-	height: 100%;
-	overflow: scroll;
+  height: 100%;
+  overflow: scroll;
 }
 
 .content-container .message-container .message {
-	padding: 12px 36px;
+  padding: 12px 36px;
 }
 
 .content-container .message-container .message .username {
-	line-height: 24px;
-	font-weight: 600;
-	margin-bottom: 0;
-	color: #211F20;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #211F20;
 }
 
 .content-container .message-container .message .username.text-color-0 {
-	color: #C44034;
+  color: #C44034;
 }
 
 .content-container .message-container .message .username.text-color-1 {
-	color: #E7C86A;
+  color: #E7C86A;
 }
 
 .content-container .message-container .message .username.text-color-2 {
-	color: #597597;
+  color: #597597;
 }
 
 .content-container .message-container .message .username.text-color-3 {
-	color: #82A56A;
+  color: #82A56A;
 }
 
 .content-container .message-container .message .username.text-color-4 {
-	color: #C765AA;
+  color: #C765AA;
 }
 
 .content-container .message-container .message .username.text-color-5 {
-	color: #99918C;
+  color: #99918C;
 }
 
 .content-container .message-container .message .message-content {
 }
 
 .content-container .message-container .message .message-content p {
-	line-height: 24px;
+  line-height: 24px;
   margin-bottom: 0;
-	color: #49423D;
+  color: #49423D;
 }
 
 .content-container .input-container {
-	padding: 12px 24px 24px 24px;
+  padding: 12px 24px 24px 24px;
+}
+
+.content-container .input-container .username {
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .content-container .input-container input {
-	width: 100%;
-	line-height: 24px;
-	margin-bottom: 12px;
+  width: 100%;
+  line-height: 24px;
+  margin-bottom: 12px;
 }
 
 .content-container .input-container button {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
