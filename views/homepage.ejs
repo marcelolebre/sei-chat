@@ -1,8 +1,8 @@
 <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
 
-<div class="message-board-container" ng-controller="MainCtrl">
+<div class="message-board-container" ng-controller="MainCtrl" ng-cloak>
   <div class="message-container" scroll-glue>
-    <div class="message" ng-repeat="message in messages">
+    <div class="message" ng-repeat="message in messages" ng-cloak>
       <p class="username text-color-{{message.colorNumber}}" >{{message.name}}</p>
       <div class="message-content">
         <p>{{message.message}}</p>
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="input-container">
-    <form ng-submit="send()">
+    <form ng-submit="send()" ng-cloak>
       <p class="username">{{userHandle}}</p>
       <input type="text" placeholder="write your message here" ng-model="data.message">
       <button type="submit" class="success button">Send</button>

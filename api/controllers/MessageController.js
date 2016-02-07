@@ -18,7 +18,21 @@ module.exports = {
   },
 
   subscribe: function(req, res){
-    Message.watch(req);
+    if (!req.isSocket) {
+      return res.badRequest();
+    }
+
+    var roomName = 'seiChat';
+    
+    sails.sockets.join(req, roomName, function(err) {
+      if (err) {
+        return res.serverError(err);
+      }
+
+      return res.json({
+        message: 'Subscribed to ' + roomName + '!'
+      });
+    });
   },
 
   all: function(req, res){
@@ -27,10 +41,7 @@ module.exports = {
 
       dataSnapshot.forEach(function(message){
         var newMessage = message.val();
-
-        Message.findOrCreate(newMessage).exec(function created(err, createdMessage){
-          messageArray.push(createdMessage);
-        });
+        messageArray.push(newMessage);
       });
     
       return res.send({userHandle: req.session.user.handle, messages: messageArray}); 
