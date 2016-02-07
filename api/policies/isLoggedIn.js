@@ -7,7 +7,7 @@ module.exports = function isLoggedIn(req, res, next) {
       return res.forbidden();
     }else{
     // Redirecting to /login view for browser requests
-       return res.redirect("/login");
+       return res.redirect('/login');
     }
   }
 
