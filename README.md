@@ -1,4 +1,5 @@
 # sei-chat
+  
 ---
 ## Setting up
 ### 1. installing dependencies
@@ -10,18 +11,31 @@
 
 official documentation - [http://sailsjs.org/get-started](http://sailsjs.org/get-started)
 
+### 3. Create a Firebase Account
+We are storing all important stuff here.
+
+[https://www.firebase.com](https://www.firebase.com)
+
 ---
 
-## Getting Started
-### 1. Create a project folder
-``` mkdir SEI2016 ```
 
-### 2. Project initialization
+## Config & Run
 
-```
-cd SEI2016
-sails new seiChat
-```
 
-### 3. Run project
+### 1. Configure Firebase
+1. Login 
+
+2. Create a new app 
+
+3. Copy your new firebase app url such as :   
+
+	```
+	https://<new-app-name>.firebaseio.com/ 
+	```
+4. In the following file: ``` <root-folder>/config/firebaseConfig.js```
+	1. Replace with the following url with the firebase app url copied in ***step 3***:
+	 ``` var appUrl = 'https://<your-app>.firebaseio.com'; ```
+
+### 2. Run 
+
 ``` sails lift ```
