@@ -39,3 +39,6 @@ We are storing all important stuff here.
 ### 2. Run 
 
 ``` sails lift ```
+
+Your app is now available at ```http://localhost:1337```
+
