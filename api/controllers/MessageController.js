@@ -23,15 +23,13 @@ module.exports = {
     }
 
     var roomName = 'seiChat';
-    
+
     sails.sockets.join(req, roomName, function(err) {
       if (err) {
         return res.serverError(err);
       }
 
-      return res.json({
-        message: 'Subscribed to ' + roomName + '!'
-      });
+      return res.ok();
     });
   },
 

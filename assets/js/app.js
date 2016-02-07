@@ -44,9 +44,7 @@ seiChatApp.controller('MainCtrl', ['$scope', function ($scope) {
     }); 
   });
 
-  io.socket.get('/message/subscribe', function(res){
-    console.log(res);
-  });
+  io.socket.get('/message/subscribe');
 
   io.socket.on('message', function onServerSentEvent (msg) {
     $scope.$apply(function(){

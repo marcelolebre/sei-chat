@@ -14,8 +14,6 @@ module.exports = {
     sails.config.firebase.users.child(userId).remove()
     req.session.user = undefined;
 
-    Message.destroy().exec(function(){});
-
     return res.redirect('/login');  
   }
 }
