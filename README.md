@@ -23,7 +23,7 @@ We are storing all important stuff here.
 
 
 ### 1. Configure Firebase
-1. Login 
+1. Login/Signup at [https://www.firebase.com/](https://www.firebase.com/)
 
 2. Create a new app 
 
